@@ -9,6 +9,7 @@ class ListingAdmin(admin.ModelAdmin):
     )
     list_display_links = ('id', 'title')
     list_per_page = 25
+    list_editable = ('is_published',)
 
 
 admin.site.register(Listing, ListingAdmin)
