@@ -8,6 +8,7 @@ class RealtorAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'name')
     list_per_page = 25
     list_filter = ('hire_date',)
+    list_editable = ('email', 'hire_date')
 
 
 admin.site.register(Realtor, RealtorAdmin)
