@@ -12,7 +12,7 @@ class ListingAdmin(admin.ModelAdmin):
     list_editable = ('is_published',)
     list_filter = ('realtor',)
     search_fields = (
-        'title','description', 'address', 'state', 'city'
+        'title', 'description', 'address', 'state', 'city'
     )
 
 
