@@ -13,3 +13,4 @@ media
 venv/
 ### VS Code ###
 .vscode/*
+/static
