@@ -4,7 +4,9 @@ from django.core.paginator import Paginator
 
 
 def listings(request):
-    listings_list = Listing.objects.all().select_related('realtor')
+    listings_list = Listing.objects.order_by('-list_date').filter(
+        is_published=True
+    ).select_related('realtor')
     paginator = Paginator(listings_list, per_page=3)
     requested_page = request.GET.get('page')
     listings_page = paginator.get_page(requested_page)
