@@ -14,6 +14,12 @@ def index(request):
 
 def about(request):
     realtors = Realtor.objects.all()
+    seller_of_the_month = Realtor.objects.filter(
+        is_seller_of_the_month=True
+    ).first()
     return render(
-        request, 'pages/about.html', {'realtors': realtors}
+        request, 'pages/about.html', {
+            'realtors': realtors,
+            'seller_of_the_month': seller_of_the_month
+        }
     )
