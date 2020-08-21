@@ -18,13 +18,8 @@ def listings(request):
 
 def listing(request, listing_id):
     listing = Listing.objects.get(pk=listing_id)
-    seller_of_the_month = Realtor.objects.filter(
-        is_seller_of_the_month=True
-    ).first()
     return render(
         request,
         'listings/listing.html',
-        {'listing': listing,
-         'seller_of_the_month': seller_of_the_month
-         }
+        {'listing': listing,}
     )
