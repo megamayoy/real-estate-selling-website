@@ -17,7 +17,9 @@ def listings(request):
 
 
 def listing(request, listing_id):
-    listing = Listing.objects.get(pk=listing_id)
+    listing = Listing.objects.filter(pk=listing_id).select_related(
+        'realtor'
+    ).first()
     return render(
         request,
         'listings/listing.html',
