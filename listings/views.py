@@ -2,7 +2,9 @@ from django.shortcuts import render
 from .models import Listing
 from realtors.models import Realtor
 from django.core.paginator import Paginator
-from django.shortcuts import HttpResponse
+from .choices import (
+    price_choices, bedroom_choices, state_choices
+)
 
 
 def listings(request):
@@ -29,4 +31,9 @@ def listing(request, listing_id):
 
 
 def search(request):
-    return HttpResponse("hello in search ")
+    context = {
+        'state_choices': state_choices,
+        'bedroom_choices': bedroom_choices,
+        'price_choices': price_choices,
+    }
+    return render(request, "listings/search.html", context)
