@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Listing
 from realtors.models import Realtor
 from django.core.paginator import Paginator
+from django.shortcuts import HttpResponse
 
 
 def listings(request):
@@ -25,3 +26,7 @@ def listing(request, listing_id):
         'listings/listing.html',
         {'listing': listing,}
     )
+
+
+def search(request):
+    return HttpResponse("hello in search ")
