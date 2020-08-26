@@ -31,17 +31,22 @@ def listing(request, listing_id):
 
 
 def search(request):
-    results = Listing.objects.order_by('-list_date')
-    if 'city' in request.GET and request.GET['city'] is not None:
+    results = Listing.objects.all().order_by('-list_date')
+
+    if request.GET.get('city', ''):
         results = results.filter(city__iexact=request.GET['city'])
-    if 'state' in request.GET and request.GET['state'] is not None:
+
+    if request.GET.get('state', ''):
         results = results.filter(state__iexact=request.GET['state'])
-    if 'keywords' in request.GET and request.GET['keywords'] is not None:
-        results = results.filter(state__icontains=request.GET['keywords'])
-    if 'bedrooms' in request.GET and request.GET['bedrooms'] is not None:
-        results = results.filter(state__iexact=request.GET['bedrooms'])
-    if 'price' in request.GET and request.GET['price'] is not None:
-        results = results.filter(state__iexact=request.GET['price'])
+
+    if request.GET.get('keywords', ''):
+        results = results.filter(description__icontains=request.GET['keywords'])
+
+    if request.GET.get('bedrooms', ''):
+        results = results.filter(bedrooms__iexact=request.GET['bedrooms'])
+
+    if request.GET.get('price', ''):
+        results = results.filter(price__iexact=request.GET['price'])
 
     context = {
         'state_choices': state_choices,
